@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Fish Hunter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="game-container">
+        <div id="hud">
+            <div id="score">Score: <span id="score-value">0</span></div>
+            <div id="lure">Lure: <span id="current-lure">Basic</span></div>
+            <div id="health">Fish Caught: <span id="fish-caught">0</span></div>
+        </div>
+        <div id="game-menu" class="overlay">
+            <div class="menu-content">
+                <h1>BIG FISH HUNTER</h1>
+                <p>The freshwater fishing FPS</p>
+                <button id="start-button">START FISHING</button>
+                <div class="instructions">
+                    <h2>How to Play</h2>
+                    <p>Move: WASD</p>
+                    <p>Aim: Mouse</p>
+                    <p>Cast Lure: Left Click</p>
+                    <p>Change Lure: 1-4 Keys</p>
+                </div>
+            </div>
+        </div>
+        <div id="loading-screen" class="overlay">
+            <div class="loading-content">
+                <h2>Loading...</h2>
+                <div class="progress-bar">
+                    <div id="progress-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/PointerLockControls.js"></script>
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+</html>
