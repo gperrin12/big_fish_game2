@@ -21,9 +21,11 @@ server {
     server_name \$host;
 
     location / {
-        proxy_pass http://127.0.0.1:5000;
+        proxy_pass http://127.0.0.1:8080;
         proxy_set_header Host \$host;
         proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
     }
 }
 EOF
@@ -42,7 +44,7 @@ After=network.target
 User=$(whoami)
 WorkingDirectory=$(pwd)
 Environment="PATH=$(pwd)/venv/bin"
-ExecStart=$(pwd)/venv/bin/gunicorn --workers 3 --bind 127.0.0.1:5000 app:app
+ExecStart=$(pwd)/venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8080 app:app
 
 [Install]
 WantedBy=multi-user.target
